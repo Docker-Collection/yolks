@@ -24,8 +24,8 @@ jobs:
       build_path: ${{ matrix.path }}
       ocr_login: true
     secrets:
-      username: ${{ secrets.OCR_USERNAME }}
-      password: ${{ secrets.OCR_PASSWORD }}
+      ocr_username: ${{ secrets.OCR_USERNAME }}
+      ocr_password: ${{ secrets.OCR_PASSWORD }}
 
     strategy:
       matrix:
