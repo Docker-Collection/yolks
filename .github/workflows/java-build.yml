@@ -11,6 +11,7 @@ on:
       - main
     paths:
       - Java/**
+  workflow_dispatch: {}
 
 permissions:
   packages: write
