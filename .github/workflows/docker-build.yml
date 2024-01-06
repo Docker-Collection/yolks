@@ -47,6 +47,11 @@ jobs:
           username: ${{ secrets.ocr_username }}
           password: ${{ secrets.ocr_password }}
 
+      - name: Temporary fix
+        run: |
+          cd ${{ inputs.build_path }}
+          cp ../entrypoint.sh .
+
       - uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.build_path }}
