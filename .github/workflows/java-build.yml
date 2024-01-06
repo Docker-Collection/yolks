@@ -1,0 +1,26 @@
+name: Java Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Java/**
+
+jobs:
+  build:
+    uses: ./.github/workflows/docker-build.yml
+    with:
+      build_name: ${{ matrix.name }}
+      build_path: ${{ matrix.path }}
+      ocr_login: true
+
+    strategy:
+      matrix:
+        include:
+          - name: "java_8"
+            path: "Java/GraalVM/8"
+          - name: "java_11"
+            path: "Java/GraalVM/11"
+          - name: "java_17"
+            path: "Java/GraalVM/17"
