@@ -12,6 +12,11 @@ on:
       ocr_login:
         required: false
         type: boolean
+    secrets:
+      ocr_username:
+        required: false
+      ocr_password:
+        required: false
 
 jobs:
   build:
@@ -39,9 +44,9 @@ jobs:
         if: inputs.ocr_login
         with:
           registry: container-registry.oracle.com
-          username: ${{ secrets.OCR_USERNAME }}
-          password: ${{ secrets.OCR_PASSWORD }}
-      
+          username: ${{ secrets.ocr_username }}
+          password: ${{ secrets.ocr_password }}
+
       - uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.build_path }}
