@@ -1,4 +1,4 @@
-name: Java - Build
+name: Java - GraalVM LazyMC Build
 
 on:
   push:
@@ -28,9 +28,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: "java_8"
-            path: "Java/GraalVM/8"
-          - name: "java_11"
-            path: "Java/GraalVM/11"
-          - name: "java_17"
-            path: "Java/GraalVM/17"
+          - name: "graalvm_lz_java_8"
+            path: "Java/GraalVM-LZ/8"
+          - name: "graalvm_lz_java_11"
+            path: "Java/GraalVM-LZ/11"
+          - name: "graalvm_lz_java_17"
+            path: "Java/GraalVM-LZ/17"

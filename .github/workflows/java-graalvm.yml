@@ -1,0 +1,36 @@
+name: Java - GraalVM Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Java/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - Java/**
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    uses: ./.github/workflows/docker-build.yml
+    with:
+      build_name: ${{ matrix.name }}
+      build_path: ${{ matrix.path }}
+      ocr_login: true
+    secrets:
+      ocr_username: ${{ secrets.OCR_USERNAME }}
+      ocr_password: ${{ secrets.OCR_PASSWORD }}
+
+    strategy:
+      matrix:
+        include:
+          - name: "graalvm_java_8"
+            path: "Java/GraalVM/8"
+          - name: "graalvm_java_11"
+            path: "Java/GraalVM/11"
+          - name: "graalvm_java_17"
+            path: "Java/GraalVM/17"
