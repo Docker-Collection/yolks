@@ -1,5 +1,8 @@
 FROM busybox as tools
-FROM container-registry.oracle.com/graalvm/jdk-ee:ol9-java17-22
+
+ARG BUILD_SOURCE=container-registry.oracle.com/graalvm/jdk-ee
+ARG BUILD_VERSION
+FROM ${BUILD_SOURCE}:${BUILD_VERSION}
 
 RUN useradd -d /home/container -m container
 

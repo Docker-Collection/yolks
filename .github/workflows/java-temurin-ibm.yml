@@ -1,0 +1,55 @@
+name: Java - Temurin & IBM Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Java/Temurin-IBM-LZ/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - Java/Temurin-IBM-LZ/**
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    uses: ./.github/workflows/docker-build.yml
+    with:
+      build_name: ${{ matrix.name }}
+      build_path: "Java/Temurin-IBM-LZ"
+      image_source: ${{ matrix.source }}
+      image_version: ${{ matrix.version }}
+      ocr_login: false
+
+    strategy:
+      matrix:
+        include:
+          # Temurin
+          - name: "temurin_lz_java_8"
+            source: "eclipse-temurin"
+            version: "8u312-b07-jdk-focal"
+          - name: "temurin_lz_java_11"
+            source: "eclipse-temurin"
+            version: "11.0.13_8-jdk-focal"
+          - name: "temurin_lz_java_17"
+            source: "eclipse-temurin"
+            version: "17-jdk-jammy"
+          - name: "temurin_lz_java_21"
+            source: "eclipse-temurin"
+            version: "21-jdk-jammy"
+          # IBM
+          - name: "ibm_lz_java_8"
+            source: "ibm-semeru-runtimes"
+            version: "open-8-jdk"
+          - name: "ibm_lz_java_11"
+            source: "ibm-semeru-runtimes"
+            version: "open-11-jdk"
+          - name: "ibm_lz_java_17"
+            source: "ibm-semeru-runtimes"
+            version: "open-17-jdk"
+          - name: "ibm_lz_java_21"
+            source: "ibm-semeru-runtimes"
+            version: "open-21-jdk"

@@ -3,6 +3,12 @@ name: Yolk - Reusable Docker Build
 on:
   workflow_call:
     inputs:
+      image_source:
+        required: false
+        type: string
+      image_version:
+        required: true
+        type: string
       build_name:
         required: true
         type: string
@@ -54,17 +60,15 @@ jobs:
           username: ${{ secrets.ocr_username }}
           password: ${{ secrets.ocr_password }}
 
-      - name: Temporary fix
-        run: |
-          cd ${{ inputs.build_path }}
-          cp ../entrypoint.sh .
-
       - uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.build_path }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            BUILD_SOURCE=${{ inputs.image_source }}
+            BUILD_VERSION=${{ inputs.image_version }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max

@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - Java/**
+      - Java/GraalVM-LZ/**
   pull_request:
     branches:
       - main
     paths:
-      - Java/**
+      - Java/GraalVM-LZ/**
   workflow_dispatch: {}
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
     uses: ./.github/workflows/docker-build.yml
     with:
       build_name: ${{ matrix.name }}
-      build_path: ${{ matrix.path }}
+      build_path: "Java/GraalVM-LZ"
       ocr_login: true
     secrets:
       ocr_username: ${{ secrets.OCR_USERNAME }}
@@ -29,8 +29,8 @@ jobs:
       matrix:
         include:
           - name: "graalvm_lz_java_8"
-            path: "Java/GraalVM-LZ/8"
+            version: "ol9-java8-21"
           - name: "graalvm_lz_java_11"
-            path: "Java/GraalVM-LZ/11"
+            version: "ol9-java11-22"
           - name: "graalvm_lz_java_17"
-            path: "Java/GraalVM-LZ/17"
+            version: "ol9-java17-22"
