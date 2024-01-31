@@ -20,6 +20,7 @@ jobs:
     with:
       build_name: ${{ matrix.name }}
       build_path: "Java/GraalVM-LZ"
+      image_version: ${{ matrix.version }}
       ocr_login: true
     secrets:
       ocr_username: ${{ secrets.OCR_USERNAME }}
