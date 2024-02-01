@@ -21,6 +21,7 @@ jobs:
       build_name: ${{ matrix.name }}
       build_path: "Java/GraalVM-LZ"
       image_version: ${{ matrix.version }}
+      image_source: ${{ matrix.source }}
       ocr_login: true
     secrets:
       ocr_username: ${{ secrets.OCR_USERNAME }}
@@ -30,8 +31,11 @@ jobs:
       matrix:
         include:
           - name: "graalvm_lz_java_8"
+            source: "container-registry.oracle.com/graalvm/jdk-ee"
             version: "ol9-java8-21"
           - name: "graalvm_lz_java_11"
+            source: "container-registry.oracle.com/graalvm/jdk-ee"
             version: "ol9-java11-22"
           - name: "graalvm_lz_java_17"
+            source: "container-registry.oracle.com/graalvm/jdk-ee"
             version: "ol9-java17-22"

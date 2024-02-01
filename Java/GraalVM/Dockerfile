@@ -1,4 +1,4 @@
-ARG BUILD_SOURCE=container-registry.oracle.com/graalvm/jdk-ee
+ARG BUILD_SOURCE
 ARG BUILD_VERSION
 
 FROM busybox as tools
