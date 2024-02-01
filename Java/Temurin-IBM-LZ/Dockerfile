@@ -1,3 +1,6 @@
+ARG BUILD_SOURCE
+ARG BUILD_VERSION
+
 FROM rust:buster as lazymc
 
 WORKDIR /lazymc
@@ -8,8 +11,6 @@ RUN apt-get update && \
     cargo build --release && \
     chmod +x target/release/lazymc
 
-ARG BUILD_SOURCE
-ARG BUILD_VERSION
 FROM ${BUILD_SOURCE}:${BUILD_VERSION}
 
 RUN  apt-get update -y \
