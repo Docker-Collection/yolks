@@ -46,14 +46,14 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: ${{ inputs.build_name }}
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         if: github.event_name != 'pull_request'
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4
         if: inputs.ocr_login
         with:
           registry: container-registry.oracle.com
