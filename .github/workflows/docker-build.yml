@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.ocr_username }}
           password: ${{ secrets.ocr_password }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v7
         with:
           context: ${{ inputs.build_path }}
           platforms: linux/amd64,linux/arm64
